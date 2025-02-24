@@ -48,6 +48,12 @@ class HomeScreen extends StatelessWidget {
             },
             child: Text('query param screen'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.go('/shell/search');
+            },
+            child: Text('go shell route screen'),
+          ),
         ],
       ),
     );
