@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
       title: 'Home',
       child: ListView(
         children: [
+          Text(GoRouterState.of(context).matchedLocation),
           ElevatedButton(
             onPressed: () {
               context.go('/first');
@@ -23,36 +24,6 @@ class HomeScreen extends StatelessWidget {
               context.goNamed('first');
             },
             child: Text('Go to First Screen (goNamed)'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.push('/detail');
-            },
-            child: Text('third screen'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.go('/pop');
-            },
-            child: Text('pop base screen'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.go('/path_param/456');
-            },
-            child: Text('path param screen'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.go('/query_param');
-            },
-            child: Text('query param screen'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.go('/shell/search');
-            },
-            child: Text('go shell route screen'),
           ),
         ],
       ),

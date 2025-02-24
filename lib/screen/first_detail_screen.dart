@@ -17,6 +17,7 @@ class FirstDetailScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(GoRouterState.of(context).matchedLocation),
               Text('ID (Path Parameter): $id'),
               Text('Query Parameter: $query'),
               SizedBox(height: 20),

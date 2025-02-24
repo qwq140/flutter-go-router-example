@@ -15,6 +15,7 @@ class FirstScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(GoRouterState.of(context).matchedLocation),
             ElevatedButton(
               onPressed: () {
                 final uriString = Uri(path: '/first/13', queryParameters: {'value' : 'go'}).toString();
