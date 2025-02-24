@@ -5,6 +5,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('ProfileScreen build');
     return Center(
       child: Text('Profile Screen'),
     );

@@ -33,6 +33,12 @@ class HomeScreen extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
+              context.go('/stateful_shell/search');
+            },
+            child: Text('go stateful shell route screen'),
+          ),
+          ElevatedButton(
+            onPressed: () {
               context.go('/unknown');
             },
             child: Text('go to invalid route'),

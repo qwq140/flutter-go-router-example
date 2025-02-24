@@ -8,10 +8,15 @@ import 'package:flutter_go_router_example/screen/profile_screen.dart';
 import 'package:flutter_go_router_example/screen/search_screen.dart';
 import 'package:flutter_go_router_example/screen/settings_screen.dart';
 import 'package:flutter_go_router_example/screen/shell_route_screen.dart';
+import 'package:flutter_go_router_example/screen/stateful_shell_route_screen.dart';
 import 'package:go_router/go_router.dart';
+
+final _rootNavigationKey = GlobalKey<NavigatorState>();
+final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   initialLocation: '/',
+  navigatorKey: _rootNavigationKey,
   routes: [
     GoRoute(
       path: '/',
@@ -39,6 +44,8 @@ final router = GoRouter(
           ],
         ),
         ShellRoute(
+          parentNavigatorKey: _rootNavigationKey,
+          navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {
             return ShellRouteScreen(child: child);
           },
@@ -66,6 +73,47 @@ final router = GoRouter(
             ),
           ],
         ),
+        StatefulShellRoute.indexedStack(
+          parentNavigatorKey: _rootNavigationKey,
+          builder: (context, state, navigationShell) {
+            return StatefulShellRouteScreen(navigationShell: navigationShell);
+          },
+          branches: [
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/stateful_shell/search',
+                  name: 'searchV2',
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(child: SearchScreen());
+                  },
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/stateful_shell/settings',
+                  name: 'settingsV2',
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(child: SettingsScreen());
+                  },
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/stateful_shell/profile',
+                  name: 'profileV2',
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(child: ProfileScreen());
+                  },
+                ),
+              ],
+            ),
+          ],
+        )
       ],
     ),
   ],
@@ -83,7 +131,8 @@ final router = GoRouter(
       transitionDuration: Duration(milliseconds: 500),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
-          position: Tween(begin: Offset(1.0, 0.0), end: Offset.zero).animate(animation),
+          position: Tween(begin: Offset(1.0, 0.0), end: Offset.zero)
+              .animate(animation),
           child: child,
         );
       },

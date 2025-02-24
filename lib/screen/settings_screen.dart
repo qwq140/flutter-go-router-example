@@ -5,6 +5,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('SettingsScreen build');
     return Center(
       child: Text('Settings Screen'),
     );
