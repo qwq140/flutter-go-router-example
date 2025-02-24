@@ -25,6 +25,12 @@ class HomeScreen extends StatelessWidget {
             },
             child: Text('Go to First Screen (goNamed)'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.go('/shell/search');
+            },
+            child: Text('go shell route screen'),
+          ),
         ],
       ),
     );
