@@ -39,6 +39,12 @@ class HomeScreen extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
+              context.go('/login');
+            },
+            child: Text('go to login screen'),
+          ),
+          ElevatedButton(
+            onPressed: () {
               context.go('/unknown');
             },
             child: Text('go to invalid route'),

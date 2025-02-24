@@ -4,6 +4,7 @@ import 'package:flutter_go_router_example/screen/error_screen.dart';
 import 'package:flutter_go_router_example/screen/first_detail_screen.dart';
 import 'package:flutter_go_router_example/screen/first_screen.dart';
 import 'package:flutter_go_router_example/screen/home_screen.dart';
+import 'package:flutter_go_router_example/screen/login_screen.dart';
 import 'package:flutter_go_router_example/screen/profile_screen.dart';
 import 'package:flutter_go_router_example/screen/search_screen.dart';
 import 'package:flutter_go_router_example/screen/settings_screen.dart';
@@ -13,6 +14,8 @@ import 'package:go_router/go_router.dart';
 
 final _rootNavigationKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
+
+bool isLoggedIn = false;
 
 final router = GoRouter(
   initialLocation: '/',
@@ -24,6 +27,13 @@ final router = GoRouter(
         return HomeScreen();
       },
       routes: [
+        GoRoute(
+          path: 'login',
+          name: 'login',
+          builder: (context, state) {
+            return LoginScreen();
+          },
+        ),
         GoRoute(
           path: 'first',
           name: 'first',
@@ -142,4 +152,14 @@ final router = GoRouter(
     );
   },
   debugLogDiagnostics: true,
+  redirect: (context, state) {
+    final isStatefulShellRoute =
+        state.matchedLocation.contains('stateful_shell');
+
+    if (!isLoggedIn && isStatefulShellRoute) {
+      return '/login'; // 로그인되지 않았다면 로그인 페이지로 리다이렉트
+    }
+
+    return null;
+  },
 );
