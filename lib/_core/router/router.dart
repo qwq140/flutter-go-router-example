@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_go_router_example/screen/error_screen.dart';
 import 'package:flutter_go_router_example/screen/first_detail_screen.dart';
 import 'package:flutter_go_router_example/screen/first_screen.dart';
 import 'package:flutter_go_router_example/screen/home_screen.dart';
@@ -66,4 +69,28 @@ final router = GoRouter(
       ],
     ),
   ],
+  // 에러 발생 시 반환할 위젯을 정의
+  // 기본 네비게이션 트랜지션
+  // errorBuilder: (context, state) {
+  //   print(state.error.toString());
+  //   return ErrorScreen(error: state.error.toString());
+  // },
+  // 커스텀 트랜지션 가능
+  errorPageBuilder: (context, state) {
+    print(state.error.toString());
+    return CustomTransitionPage(
+      key: state.pageKey,
+      transitionDuration: Duration(milliseconds: 500),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: Tween(begin: Offset(1.0, 0.0), end: Offset.zero).animate(animation),
+          child: child,
+        );
+      },
+      child: ErrorScreen(
+        error: state.error.toString(),
+      ),
+    );
+  },
+  debugLogDiagnostics: true,
 );

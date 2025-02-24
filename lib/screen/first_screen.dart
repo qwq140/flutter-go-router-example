@@ -26,6 +26,13 @@ class FirstScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                context.go('/unknown');
+              },
+              child: Text('Go to Invalid Route'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
                 context.pop();
               },
               child: Text('Go Back'),
