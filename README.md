@@ -1,5 +1,6 @@
 # GoRouter 가이드
 > 작성 기준 버전 : 14.8.0
+> https://pub.dev/packages/go_router
 
 `go_router`는 Flutter 애플리케이션에서 라우팅을 쉽게 관리할 수 있도록 도와주는 패키지이다.
 선언형 방식으로 경로를 정의하고, URL 경로 기반으로 화면 전환을 처리할 수 있다.
@@ -80,12 +81,12 @@ class MyApp extends StatelessWidget {
   ```dart
   context.goNamed('first');
   ```
-  **go()**를 name 형식으로 사용
+  **go()** 를 name 형식으로 사용
 
   ```dart
   context.pushNamed('first');
   ```
-  **push()**를 name 형식으로 사용
+  **push()** 를 name 형식으로 사용
 
 #### 4. **`context.pop([result])`**
 - **설명:**  
